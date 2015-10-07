@@ -2,7 +2,13 @@ Rails.application.routes.draw do
 
   get '/register' => 'users#new'
 
-  resources :users, only: [:create, :show]  # The priority is based upon order of creation: first created -> highest priority.
+  resources :users, only: [:create, :show]
+
+  get '/login' => 'sessions#new'
+  delete '/logout' => 'sessions#destroy'
+
+  resources :sessions, only: [:create]
+   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
