@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151007143848) do
+ActiveRecord::Schema.define(version: 20151008194400) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "kardma_exchanges", force: :cascade do |t|
+    t.integer  "giver_id"
+    t.integer  "receiver_id"
+    t.integer  "station_id"
+    t.boolean  "complete",    default: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
 
   create_table "kardmas", force: :cascade do |t|
     t.integer  "giver_id"
@@ -31,6 +40,12 @@ ActiveRecord::Schema.define(version: 20151007143848) do
     t.integer  "score",         null: false
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+  end
+
+  create_table "stations", force: :cascade do |t|
+    t.string   "address",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

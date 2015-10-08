@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class KardmaTest < ActiveSupport::TestCase
+class KardmaExchangeTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
