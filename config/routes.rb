@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  root 'roles#index'
+
   get '/register' => 'users#new'
 
   resources :users, only: [:create, :show]
