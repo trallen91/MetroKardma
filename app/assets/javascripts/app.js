@@ -5,10 +5,10 @@ angular.module('metroKardma').config([
   '$urlRouterProvider',
   function($stateProvider, $urlRouterProvider) {
 
-    $stateProvider.state('stations', {
-      url: '/stations',
-      templateUrl: 'stations/_stations.html',
-      controller: 'StationsCtrl',
+    $stateProvider.state('home', {
+      url: '/home',
+      templateUrl: 'home/_home.html',
+      controller: 'MainCtrl',
       resolve: {
         postPromise: ['stations', function(stations) {
           return stations.getAll();
@@ -16,6 +16,12 @@ angular.module('metroKardma').config([
       }
     });
 
-    $urlRouterProvider.otherwise('stations');
+    $stateProvider.state('stations', {
+      url: '/stations/{id}',
+      templateUrl: 'stations/_stations.html',
+      controller: 'StationsCtrl'
+    })
+
+    $urlRouterProvider.otherwise('home');
   }])
 
