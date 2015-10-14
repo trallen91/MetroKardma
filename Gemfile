@@ -26,6 +26,10 @@ gem 'devise', '~> 3.4.0'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+source "https://rails-assets.org" do
+  gem "rails-assets-angular-devise"
+end
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
