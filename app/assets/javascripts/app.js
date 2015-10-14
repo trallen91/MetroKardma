@@ -7,7 +7,7 @@ angular.module('metroKardma').config([
 
     $stateProvider.state('stations', {
       url: '/stations',
-      templateUrl: '/stations.html',
+      templateUrl: 'stations/_stations.html',
       controller: 'StationsCtrl'
     });
 
