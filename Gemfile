@@ -22,6 +22,7 @@ gem 'angular-rails-templates'
 gem 'sprockets', '2.12.3'
 gem 'responders', '~> 2.0'
 
+gem 'devise', '~> 3.4.0'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
