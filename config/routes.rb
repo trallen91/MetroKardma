@@ -11,5 +11,5 @@ Rails.application.routes.draw do
 
   # resources :sessions, only: [:create]
 
-  # resources :stations, only: [:index, :show]
+  resources :stations, only: [:index, :show]
 end
