@@ -8,7 +8,12 @@ angular.module('metroKardma').config([
     $stateProvider.state('stations', {
       url: '/stations',
       templateUrl: 'stations/_stations.html',
-      controller: 'StationsCtrl'
+      controller: 'StationsCtrl',
+      resolve: {
+        postPromise: ['stations', function(stations) {
+          return stations.getAll();
+        }]
+      }
     });
 
     $urlRouterProvider.otherwise('stations');
