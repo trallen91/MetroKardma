@@ -1,5 +1,6 @@
 class StationsController < ApplicationController
   def index
-    respond_with Station.all
+    @stations = Station.all
+    render :json => @stations, :include => :kardma_exchanges
   end
 end

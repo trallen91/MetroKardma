@@ -3,7 +3,4 @@ class Station < ActiveRecord::Base
 
   validates_presence_of :address
 
-  # def as_json(option = {})
-  #   super(options.merge(include: :kardma_exchanges))
-  # end
 end
