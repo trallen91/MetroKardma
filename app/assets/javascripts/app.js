@@ -19,7 +19,12 @@ angular.module('metroKardma').config([
     $stateProvider.state('stations', {
       url: '/stations/{id}',
       templateUrl: 'stations/_stations.html',
-      controller: 'StationsCtrl'
+      controller: 'StationsCtrl',
+      resolve: {
+        station: ['$stateParams', 'stations', function($stateParams, stations){
+          return stations.get($stateParams.id)
+        }]
+      }
     })
 
     $urlRouterProvider.otherwise('home');
