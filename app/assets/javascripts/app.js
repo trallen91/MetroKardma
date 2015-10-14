@@ -27,6 +27,12 @@ angular.module('metroKardma').config([
       }
     })
 
+    $stateProvider.state('register', {
+      url: '/register',
+      templateUrl: 'auth/_register.html',
+      controller: 'AuthCtrl'
+    })
+
     $urlRouterProvider.otherwise('home');
   }])
 
