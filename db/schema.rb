@@ -25,14 +25,6 @@ ActiveRecord::Schema.define(version: 20151008194400) do
     t.datetime "updated_at",                  null: false
   end
 
-  create_table "kardmas", force: :cascade do |t|
-    t.integer  "giver_id"
-    t.integer  "receiver_id"
-    t.boolean  "active",      default: true
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-  end
-
   create_table "ratings", force: :cascade do |t|
     t.integer  "rater_id"
     t.integer  "rated_user_id"

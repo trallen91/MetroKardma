@@ -2,20 +2,17 @@
 <html>
 <head>
   <title>MetroKardma</title>
+
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body ng-app="metroKardma">
+  <ui-view></ui-view>
 
-<% if logged_in? %>
-  <%= link_to "log out", logout_path, method: :delete %>
-<% else %>
-  <%= link_to "Register", register_path %>
-  <%= link_to "Log In", login_path %>
-<% end %>
-
-<%= yield %>
+  <script type="text/ng-template" id="/stations.html">
+    <h1>Here are the stations</h1>
+  </script>
 
 </body>
 </html>
