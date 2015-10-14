@@ -14,6 +14,3 @@ angular.module('metroKardma').config([
     $urlRouterProvider.otherwise('stations');
   }])
 
-angular.module('metroKardma').controller('StationsCtrl', ['$scope', function($scope){
-
-}])
