@@ -1,4 +1,4 @@
-angular.module('metroKardma', ['ui.router'])
+angular.module('metroKardma', ['ui.router', 'templates'])
 
 angular.module('metroKardma').config([
   '$stateProvider',
