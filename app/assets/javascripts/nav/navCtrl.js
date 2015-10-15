@@ -14,6 +14,10 @@ angular.module('metroKardma').controller('NavCtrl', [
         $scope.user = user;
     });
 
+    $scope.$on('devise:login', function(e, user){
+      $scope.user = user;
+    });
+
     $scope.$on('devise:logout', function(e, user) {
       $scope.user = {};
     });

@@ -6,7 +6,12 @@ angular.module('metroKardma').controller('AuthCtrl', [
     $scope.register = function() {
       Auth.register($scope.user).then(function(){
         $state.go('home');
-
       });
-    };
+   };
+
+    $scope.login = function() {
+      Auth.login($scope.user).then(function(){
+        $state.go('home');
+      });
+    }
   }])

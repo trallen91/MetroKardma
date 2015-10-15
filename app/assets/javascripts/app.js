@@ -25,11 +25,17 @@ angular.module('metroKardma').config([
           return stations.get($stateParams.id)
         }]
       }
-    })
+    });
 
     $stateProvider.state('register', {
       url: '/register',
       templateUrl: 'auth/_register.html',
+      controller: 'AuthCtrl'
+    });
+
+    $stateProvider.state('login', {
+      url: '/login',
+      templateUrl: 'auth/_login.html',
       controller: 'AuthCtrl'
     })
 
