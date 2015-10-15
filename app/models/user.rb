@@ -1,6 +1,10 @@
 class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  has_many :given_ratings, class_name: :Rating, foreign_key: :rater_id
+  has_many :received_ratings, class_name: :Rating, foreign_key: :rated_user_id
+
+  has_many :given_kardmas, class_name: :KardmaExchange, foreign_key: :giver_id
+  has_many :received_kardmas, class_name: :KardmaExchange, foreign_key: :receiver_id
 end
