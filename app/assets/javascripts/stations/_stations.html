@@ -1,0 +1,8 @@
+<h2> Here are the people waiting for swipes at {{station.address}}</h2>
+
+<h3>Click on their name if you are going to provide them a swipe </h3>
+
+<ul ng-repeat="exchange in station.kardma_exchanges">
+  <li ng-hide="exchange.complete || exchange.giver_id">{{exchange.receiver.email}}</li>
+</ul>
+

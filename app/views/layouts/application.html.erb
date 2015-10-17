@@ -2,20 +2,19 @@
 <html>
 <head>
   <title>MetroKardma</title>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
-<body>
-
-<% if logged_in? %>
-  <%= link_to "log out", logout_path, method: :delete %>
-<% else %>
-  <%= link_to "Register", register_path %>
-  <%= link_to "Log In", login_path %>
-<% end %>
-
-<%= yield %>
+<body ng-app="metroKardma">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div ng-include="'nav/_nav.html'"></div>
+      <ui-view></ui-view>
+    </div>
+  </div>
 
 </body>
 </html>
