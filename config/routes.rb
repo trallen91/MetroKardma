@@ -11,6 +11,6 @@ Rails.application.routes.draw do
   # delete '/logout' => 'sessions#destroy'
 
   # resources :sessions, only: [:create]
-
+  resources :chats
   resources :stations, only: [:index, :show]
 end
