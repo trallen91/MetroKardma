@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 20151019151907) do
 
   create_table "stations", force: :cascade do |t|
     t.string   "name"
+    t.string   "lines"
     t.decimal  "latitude",   precision: 10, scale: 6
     t.decimal  "longitude",  precision: 10, scale: 6
     t.datetime "created_at",                          null: false
