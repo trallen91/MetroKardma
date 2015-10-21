@@ -6,6 +6,6 @@ class StationsController < ApplicationController
 
   def show
     @station = Station.find_by(id: params[:id])
-    render :json => @station.to_json(:include => { :kardma_exchanges => {:include => :receiver}})
+    render :json => @station.to_json(:include => { :exchanges_needing_giver => {:include => :receiver}})
   end
 end
