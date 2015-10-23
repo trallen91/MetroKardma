@@ -6,7 +6,7 @@ west_four = Station.first
 
 coney = Station.last
 
-bk_bridge = Station.find_by(id: 5)
+33rd_street = Station.find_by(id: 5)
 
 
 todd = User.create({email: "todd@gmail.com", password: "password"})
@@ -21,4 +21,4 @@ KardmaExchange.create(giver: todd, receiver: bill, station: west_four, complete:
 
 KardmaExchange.create(receiver: henry, station: coney, complete: false)
 
-KardmaExchange.create(giver: jabroni, station: bk_bridge, complete: false)
+KardmaExchange.create(giver: jabroni, station: 33rd_street, complete: false)
