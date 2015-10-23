@@ -15,7 +15,7 @@ bill = User.create({email: "bill@gmail.com", password: "password"})
 
 henry = User.create(email: "henry@gmail.com", password: "password")
 
-jabroni = User.create(email: "henry@gmail.com", password: "password")
+jabroni = User.create(email: "jabroni@gmail.com", password: "password")
 
 KardmaExchange.create(giver: todd, receiver: bill, station: west_four, complete: false)
 
