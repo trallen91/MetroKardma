@@ -5,4 +5,8 @@ class Station < ActiveRecord::Base
     self.kardma_exchanges.where('complete = ? AND giver_id IS ?', false, nil)
   end
 
+  def exchanges_needing_receiver
+    self.kardma_exchanges.where('complete = ? AND receiver_id IS ?', false, nil)
+  end
+
 end
