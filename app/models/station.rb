@@ -1,6 +1,12 @@
 class Station < ActiveRecord::Base
   has_many :kardma_exchanges
 
-  validates_presence_of :address
+  def exchanges_needing_giver
+    self.kardma_exchanges.where('complete = ? AND giver_id IS ?', false, nil)
+  end
+
+  def exchanges_needing_receiver
+    self.kardma_exchanges.where('complete = ? AND receiver_id IS ?', false, nil)
+  end
 
 end
