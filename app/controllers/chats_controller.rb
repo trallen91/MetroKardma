@@ -1,15 +1,16 @@
 class ChatsController < ApplicationController
-  before_action :set_chat, only: [:show, :edit, :update, :destroy]
+  #before_filter :authenicate_us
 
-  # GET /chats
-  # GET /chats.json
-  def index
-    @chats = Chat.all
-  end
+  layout false
 
   # GET /chats/1
   # GET /chats/1.json
   def show
+    @chat = Chat.find(params[:id])
+    @receiver = interlocutor(@chat)
+    @messages = @chat.messages
+    @message = Message.new
+    render json: $message
   end
 
   # GET /chats/new
@@ -24,17 +25,14 @@ class ChatsController < ApplicationController
   # POST /chats
   # POST /chats.json
   def create
-    @chat = Chat.new(chat_params)
-
-    respond_to do |format|
-      if @chat.save
-        format.html { redirect_to @chat, notice: 'Chat was successfully created.' }
-        format.json { render :show, status: :created, location: @chat }
-      else
-        format.html { render :new }
-        format.json { render json: @chat.errors, status: :unprocessable_entity }
-      end
+    #@chat = Chat.new(chat_params)
+    @isBetween = Chat.between(params[:swiper_id], params[:swipee_id])
+    if @isBetween.present?
+      @chat = @isBetween.first
+    else
+      @chat = Chat.create!(chat_params)
     end
+    render json: {chat_id: @chat.id}
   end
 
   # PATCH/PUT /chats/1
@@ -67,8 +65,12 @@ class ChatsController < ApplicationController
       @chat = Chat.find(params[:id])
     end
 
+    def interlocutor(chat)
+      current_user == chat.swipee_id ? chat.swipee_id : chat.swiper_id
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def chat_params
-      params[:chat]
+      params.permit(:swiper_id, :swipee_id)
     end
 end

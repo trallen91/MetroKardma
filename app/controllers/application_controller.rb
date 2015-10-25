@@ -1,13 +1,17 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery with: :exception
+  #
+  # reenable when on production
+  # protect_from_forgery with: :exception
 
   respond_to :json
 
-  after_filter :set_csrf_cookie_for_ng
+  # not sure if we need these below but im keeping just in case
 
-  def set_csrf_cookie_for_ng
-    cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
-  end
+  #after_filter :set_csrf_cookie_for_ng
+
+  #def set_csrf_cookie_for_ng
+  #  cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
+  #end
 
   def angular
     render 'layouts/application'

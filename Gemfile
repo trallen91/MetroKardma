@@ -22,6 +22,14 @@ gem 'angular-rails-templates'
 gem 'sprockets', '2.12.3'
 gem 'responders', '~> 2.0'
 
+#for the chat
+#http://josephndungu.com/tutorials/gmail-like-chat-application-in-ruby-on-rails
+gem 'private_pub'
+gem 'thin'
+
+
+gem 'rack-cors', :require => 'rack/cors'
+
 gem 'devise', '~> 3.4.0'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'

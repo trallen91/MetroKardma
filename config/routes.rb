@@ -1,16 +1,15 @@
 Rails.application.routes.draw do
-  devise_for :users
   root to: 'application#angular'
-  # root 'stations#index'
 
-  # get '/register' => 'users#new'
+  # From my understanding, once you use devise for the users, you shouldn't use this route as well else it will confuse things
+  # resources :users
 
-  # resources :users, only: [:create, :show]
+  devise_for :users, :controllers => {
+    sessions: 'user/sessions', registrations: 'user/registrations', passwords: 'user/passwords'
+  }
+  resources :chats, only: [:show, :create] do
+    resources :messages
+  end
 
-  # get '/login' => 'sessions#new'
-  # delete '/logout' => 'sessions#destroy'
-
-  # resources :sessions, only: [:create]
-  resources :chats
   resources :stations, only: [:index, :show]
 end

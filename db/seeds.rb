@@ -6,19 +6,25 @@ west_four = Station.first
 
 coney = Station.last
 
-33rd_street = Station.find_by(id: 5)
+thirty_third_street = Station.find_by(id: 5)
 
 
 todd = User.create({email: "todd@gmail.com", password: "password"})
 
-bill = User.create({email: "bill@gmail.com", password: "password"})
+bill = User.create({email: "bill@gmail.com", password: "password", first_name: "Billy", last_name: "Joel"})
 
 henry = User.create(email: "henry@gmail.com", password: "password")
 
 jabroni = User.create(email: "jabroni@gmail.com", password: "password")
 
+
 KardmaExchange.create(giver: todd, receiver: bill, station: west_four, complete: false)
 
 KardmaExchange.create(receiver: henry, station: coney, complete: false)
 
-KardmaExchange.create(giver: jabroni, station: 33rd_street, complete: false)
+KardmaExchange.create(giver: jabroni, station: thirty_third_street, complete: false)
+
+Chat.create(swiper_id: todd.id, swipee_id: bill.id, fireBaseId: 10)
+#you shud be able to have both types of relationships. I dont think we need to merge chats of this kind
+Chat.create(swiper_id: bill.id, swipee_id: todd.id, fireBaseId: 10)
+Chat.create(swiper_id: henry.id, swipee_id: jabroni.id, fireBaseId: 11)
