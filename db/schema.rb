@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20151024233518) do
   create_table "chats", force: :cascade do |t|
     t.integer  "swiper_id",  null: false
     t.integer  "swipee_id",  null: false
-    t.string   "fireBaseId", null: false
+    t.string   "fireBaseId"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

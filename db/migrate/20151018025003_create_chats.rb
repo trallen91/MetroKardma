@@ -7,8 +7,5 @@ class CreateChats < ActiveRecord::Migration
       t.string :fireBaseId
       t.timestamps null: false
     end
-
-    add_index :chats, :swiper
-    add_index :chats, :swipee
   end
 end
