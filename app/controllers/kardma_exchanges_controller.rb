@@ -9,7 +9,7 @@ class KardmaExchangesController < ApplicationController
       KardmaExchange.create(station: station, receiver: current_user)
       render json: {message: "Successfully created"}, status: 200
     else
-      # this should not allow you to go to the pending state
+      render json: {message: "Something went wrong"}, status: 500
     end
   end
 end
