@@ -6,6 +6,11 @@ class StationsController < ApplicationController
 
   def show
     @station = Station.find_by(id: params[:id])
-    render :json => @station.to_json(:include => { :exchanges_needing_giver => {:include => :receiver}, :exchanges_needing_receiver => {:include => :giver}})
+    if params[:user_role] == "swiper"
+      render :json => @station.to_json(:include => {:exchanges_needing_giver => {:include => :receiver}})
+    elsif params[:user_role] == "swipee"
+      render :json => @station.to_json(:include => {:exchanges_needing_receiver => {:include => :giver}})
+    end
+    # render :json => @station.to_json(:include => { :exchanges_needing_giver => {:include => :receiver}, :exchanges_needing_receiver => {:include => :giver}})
   end
 end
