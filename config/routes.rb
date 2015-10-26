@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   end
 
   resources :stations, only: [:index, :show]
+
+  resources :kardma_exchanges, only: [:create]
 end
