@@ -11,6 +11,5 @@ class StationsController < ApplicationController
     elsif params[:user_role] == "swipee"
       render :json => @station.to_json(:include => {:exchanges_needing_receiver => {:include => :giver}})
     end
-    # render :json => @station.to_json(:include => { :exchanges_needing_giver => {:include => :receiver}, :exchanges_needing_receiver => {:include => :giver}})
   end
 end
