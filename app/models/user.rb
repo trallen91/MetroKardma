@@ -10,4 +10,9 @@ class User < ActiveRecord::Base
 
   has_many :given_kardmas, class_name: :KardmaExchange, foreign_key: :giver_id
   has_many :received_kardmas, class_name: :KardmaExchange, foreign_key: :receiver_id
+
+  def has_pending_exchange?
+    (self.given_kardmas.where(complete: false).length + self.received_kardmas.where(complete: false).length) > 0
+  end
+
 end
