@@ -15,4 +15,7 @@ class User < ActiveRecord::Base
     (self.given_swipes.where(complete: false).length + self.received_swipes.where(complete: false).length) > 0
   end
 
+  def kardma_count
+    self.given_swipes.where(complete: true).length - self.received_swipes.where(complete: true).length + 5
+  end
 end
