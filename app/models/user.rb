@@ -8,11 +8,11 @@ class User < ActiveRecord::Base
 
   has_many :chats
 
-  has_many :given_kardmas, class_name: :KardmaExchange, foreign_key: :giver_id
-  has_many :received_kardmas, class_name: :KardmaExchange, foreign_key: :receiver_id
+  has_many :given_swipes, class_name: :KardmaExchange, foreign_key: :swiper_id
+  has_many :received_swipes, class_name: :KardmaExchange, foreign_key: :swipee_id
 
   def has_pending_exchange?
-    (self.given_kardmas.where(complete: false).length + self.received_kardmas.where(complete: false).length) > 0
+    (self.given_swipes.where(complete: false).length + self.received_swipes.where(complete: false).length) > 0
   end
 
 end

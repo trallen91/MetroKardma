@@ -2,10 +2,9 @@ class KardmaExchangesController < ApplicationController
 
   def create
     station = Station.find_by(id: params[:station_id])
-    params[:role] == "swiper" ? role = "giver" : role = "receiver"
     @ke = KardmaExchange.new(station:station)
+    role = params[:role]
     @ke.send(role+'=', current_user)
-
 
     if @ke.save
       render json: {message: "Successfully created"}, status: 200

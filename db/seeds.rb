@@ -18,11 +18,11 @@ henry = User.create(email: "henry@gmail.com", password: "password")
 jabroni = User.create(email: "jabroni@gmail.com", password: "password")
 
 
-KardmaExchange.create(giver: todd, receiver: bill, station: west_four, complete: false)
+KardmaExchange.create(swiper: todd, swipee: bill, station: west_four, complete: false)
 
-KardmaExchange.create(receiver: henry, station: coney, complete: false)
+KardmaExchange.create(swipee: henry, station: coney, complete: false)
 
-KardmaExchange.create(giver: jabroni, station: thirty_third_street, complete: false)
+KardmaExchange.create(swiper: jabroni, station: thirty_third_street, complete: false)
 
 Chat.create(swiper_id: todd.id, swipee_id: bill.id, fireBaseId: 10)
 #you shud be able to have both types of relationships. I dont think we need to merge chats of this kind
