@@ -1,26 +1,32 @@
-class User::SessionsController < Devise::SessionsController
-  respond_to :json, :html
-  def new
-    @user = User.new
-  end
+class SessionsController < Devise::SessionsController
+  respond_to :json
 
   def create
-    sign_out(:user) if current_user
-    self.resource = warden.authenticate!(auth_options)
-    set_flash_message(:notice, :signed_in) if is_flashing_format?
-    sign_in(resource_name, resource)
-    yield resource if block_given?
-    respond_with resource, location: after_sign_in_path_for(resource)
+    resource = warden.authenticate!(:scope => resource_name, :recall => "#{controller_path}#failure")
+    render :status => 200,
+           :json => current_user
   end
 
   def destroy
-    log_out
-    redirect_to login_path
+    warden.authenticate!(:scope => resource_name, :recall => "#{controller_path}#failure")
+    sign_out
+    render :status => 200,
+           :json => { :success => true,
+                      :info => "Logged out",
+           }
   end
 
-  private
+  def failure
+    render :status => 401,
+           :json => { :success => false,
+                      :info => "Login Credentials Failed"
+           }
+  end
 
-  def session_params
-    params.require(:session).permit(:username, :password)
+  def show_current_user
+    warden.authenticate!(:scope => resource_name, :recall => "#{controller_path}#failure")
+    render :status => 200,
+           :json => current_user
+
   end
 end

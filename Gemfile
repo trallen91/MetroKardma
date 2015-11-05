@@ -38,6 +38,13 @@ source "https://rails-assets.org" do
   gem "rails-assets-angular-devise"
 end
 
+#https://github.com/cloudspace/angular_devise/issues/36
+#https://github.com/jsanders/angular_rails_csrf
+#gem 'angular_rails_csrf'
+
+gem 'angular_csrf'
+
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
