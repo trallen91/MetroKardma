@@ -2,12 +2,15 @@ class MessagesController < ApplicationController
   #before_filter :authenticate_user!
 
   def create
-    @conversation = Conversation.find(params[:conversation_id])
-    @message = @conversation.messages.build(message_params)
+    @chat = Chat.find(params[:chat_id])
+    @message = @chat.messages.build(message_params)
     @message.user_id = current_user.id
     @message.save!
-
-    @path = conversation_path(@conversation)
+    @message.body = 'youre dumb'
+    @path = chats_path(@chat)
+    PrivatePub.publish_to "/messages/new", :chat_message => "test"
+    PrivatePub.subscription
+    render :json => @chat
   end
 
   private
