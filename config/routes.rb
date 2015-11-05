@@ -1,3 +1,4 @@
+
 Rails.application.routes.draw do
   root to: 'application#angular'
 
@@ -5,13 +6,13 @@ Rails.application.routes.draw do
   # resources :users
 
   devise_for :users, :controllers => {
-    sessions: 'user/sessions', registrations: 'user/registrations', passwords: 'user/passwords'
-  }
+                       sessions: 'sessions', registrations: 'user/registrations', passwords: 'user/passwords'
+                   }
   resources :chats, only: [:show, :create] do
     resources :messages
   end
 
   resources :stations, only: [:index, :show]
-
-  resources :kardma_exchanges, only: [:create, :show, :destroy]
+  resources :users, only: [:show,:index]
+  resources :kardma_exchanges, only: [:create]
 end
