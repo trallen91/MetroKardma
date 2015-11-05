@@ -9,13 +9,13 @@ coney = Station.last
 thirty_third_street = Station.find_by(id: 5)
 
 
-todd = User.create({email: "todd@gmail.com", password: "password"})
+todd = User.create({email: "todd@gmail.com", password: "password", first_name: "Todd", last_name: "Packard"})
 
-bill = User.create({email: "bill@gmail.com", password: "password", first_name: "Billy", last_name: "Joel"})
+bill = User.create({email: "bill@gmail.com", password: "password", first_name: "Mike", last_name: "Hunt"})
 
-henry = User.create(email: "henry@gmail.com", password: "password")
+henry = User.create(email: "henry@gmail.com", password: "password", first_name: "Henry", last_name: "Kemp")
 
-jabroni = User.create(email: "jabroni@gmail.com", password: "password")
+jabroni = User.create(email: "jabroni@gmail.com", password: "password", first_name: "Jab", last_name: "Roni")
 
 
 KardmaExchange.create(swiper: todd, swipee: bill, station: west_four, complete: false)
