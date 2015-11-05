@@ -18,4 +18,8 @@ class User < ActiveRecord::Base
   def kardma_count
     self.given_swipes.where(complete: true).length - self.received_swipes.where(complete: true).length + 5
   end
+
+  def average_rating
+    self.received_ratings.inject(0) {|sum, n| sum + n}
+  end
 end
