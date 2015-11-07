@@ -1,7 +1,7 @@
 class Station < ActiveRecord::Base
   has_many :kardma_exchanges
 
-  attr_accessor :current_user
+  attr_accessor :current_user, :current_user_role
 
   def exchanges_needing_swiper
     self.kardma_exchanges.where('complete = ? AND swiper_id IS ?', false, nil)
@@ -11,10 +11,15 @@ class Station < ActiveRecord::Base
     self.kardma_exchanges.where('complete = ? AND swipee_id IS ?', false, nil)
   end
 
-  def pending_exchange_for_user(user=nil)
+  def pending_exchange_for_user(user=nil, role=nil)
     user ||= current_user
+    role ||= current_user_role
 
-    self.kardma_exchanges.where('(swiper_id = ? OR swipee_id = ?) AND complete = ?', user.id, user.id, false)
+    if role == "swiper"
+      self.kardma_exchanges.where('swiper_id = ? AND complete = ?', user.id, false)
+    elsif role == "swipee"
+      self.kardma_exchanges.where('swipee_id = ? AND complete = ?', user.id, false)
+    end
   end
 
 end
