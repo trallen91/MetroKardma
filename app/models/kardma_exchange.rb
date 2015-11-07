@@ -8,7 +8,9 @@ class KardmaExchange < ActiveRecord::Base
   def cannot_be_multiple_pending_for_user
     swiper ? user = swiper : user = swipee
     if user.has_pending_exchange?
-      errors.add(:user, "has a request as a #{user.role_in_pending_exchange} at #{user.pending_exchange.station.name}.  This exchange must first be cancelled")
+      errors.add(:base, "#{user.role_in_pending_exchange}")
+      errors.add(:base, "#{user.pending_exchange.station.name}")
+      errors.add(:base, "#{user.pending_exchange.id}")
     end
   end
 end
