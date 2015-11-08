@@ -1,10 +1,9 @@
 class ChatsController < ApplicationController
+  respond_to :json
 
   def show
     @chat = Chat.find(params[:id])
     @receiver = interlocutor(@chat)
-    @messages = @chat.messages
-    @message = Message.new
     render :json => @chat
   end
 

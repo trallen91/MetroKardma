@@ -13,6 +13,12 @@ class MessagesController < ApplicationController
     render :json => @chat
   end
 
+  def index
+    @chat = Chat.find(params[:chat_id])
+    @messages = @chat.messages
+    render :json => @messages
+  end
+
   private
 
   def message_params
