@@ -12,7 +12,7 @@ class Chat < ActiveRecord::Base
   end
 
   scope :between, -> (swiper_id, swipee_id) do
-    where("(chats.swiper_id = ? AND chats.swipee_id = ?) OR (chats.swipee_id = ? AND chats.swiper_id = ?) ", swiper_id,swipee_id, swipee_id,swiper_id)
+    where("(chats.swiper_id = ? AND chats.swipee_id = ?) OR (chats.swipee_id = ? AND chats.swiper_id = ?) ", swiper_id,swipee_id, swiper_id,swipee_id)
   end
 
 end
