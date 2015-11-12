@@ -5,8 +5,10 @@ class KardmaExchange < ActiveRecord::Base
 
   validate :cannot_be_multiple_pending_for_user
 
-  def cannot_be_multiple_pending_for_user
-    swiper ? user = swiper : user = swipee
+  attr_accessor :current_user
+
+  def cannot_be_multiple_pending_for_user(user=nil)
+    user ||= current_user
     if user.has_pending_exchange?
       errors.add(:base, "#{user.role_in_pending_exchange}")
       errors.add(:base, "#{user.pending_exchange.station.name}")
