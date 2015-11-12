@@ -11,7 +11,7 @@ thirty_third_street = Station.find_by(id: 5)
 
 todd = User.create({email: "todd@gmail.com", password: "password", first_name: "Todd", last_name: "Packard"})
 
-bill = User.create({email: "bill@gmail.com", password: "password", first_name: "Mike", last_name: "Hunt"})
+bill = User.create({email: "bill@gmail.com", password: "password", first_name: "Bill", last_name: "Hunt"})
 
 henry = User.create(email: "henry@gmail.com", password: "password", first_name: "Henry", last_name: "Kemp")
 
