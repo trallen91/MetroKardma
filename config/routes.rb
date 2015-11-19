@@ -14,5 +14,9 @@ Rails.application.routes.draw do
 
   resources :stations, only: [:index, :show]
   resources :users, only: [:show,:index]
-  resources :kardma_exchanges, only: [:create, :destroy]
+  resources :kardma_exchanges, only: [:create, :destroy, :update] do
+    collection do
+        get 'search_by_swiper_swipee/:swiperOrSwipee' => 'kardma_exchanges#search_by_swiper_swipee'
+    end
+  end
 end

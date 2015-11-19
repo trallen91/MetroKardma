@@ -3,7 +3,8 @@ class KardmaExchange < ActiveRecord::Base
   belongs_to :swiper, class_name: :User
   belongs_to :swipee, class_name: :User
 
-  validate :cannot_be_multiple_pending_for_user
+
+  #validate :cannot_be_multiple_pending_for_user
 
   def cannot_be_multiple_pending_for_user
     swiper ? user = swiper : user = swipee
