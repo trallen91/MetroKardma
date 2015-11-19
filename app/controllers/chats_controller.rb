@@ -8,10 +8,17 @@ class ChatsController < ApplicationController
   end
 
   def create
-    #@chat = Chat.new(chat_params)
-    @isBetween = Chat.between(params[:swiper_id], params[:swipee_id])
-    if @isBetween.present?
-      @chat = @isBetween.first
+    #find the chat or create it if it doesn't exist
+    @is_between = Chat.where(swiper_id: params[:swiper_id], swipee_id: params[:swipee_id])
+
+    if @is_between.length > 1
+      @error_text = "More than one Chat exits between two users as the same role"
+      render json: {message: @error_text}, status: 500
+      raise @error_text
+    end
+
+    if @is_between.present?
+      @chat = @is_between.first
     else
       @chat = Chat.create!(chat_params)
     end
