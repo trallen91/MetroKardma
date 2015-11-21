@@ -46,17 +46,17 @@ class KardmaExchangesController < ApplicationController
     end
   end
 
-  # def update
-  #   @ke = KardmaExchange.find_by(id: params[:id])
-  #   role = params[:role]
-  #   @ke.send(role+'=', current_user)
-  #   @ke.current_user = current_user
+  def update_with_match
+    @ke = KardmaExchange.find_by(id: params[:id])
+    role = params[:role]
+    @ke.send(role+'=', current_user)
+    @ke.current_user = current_user
 
-  #   if @ke.save
-  #     render json: {message: "Successfully created"}, status: 200
-  #   else
-  #     render json: {:errors => @ke.errors.full_messages }
-  #   end
-  # end
+    if @ke.save
+      render json: {message: "Successfully created"}, status: 200
+    else
+      render json: {:errors => @ke.errors.full_messages }
+    end
+  end
 
 end
