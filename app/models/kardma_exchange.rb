@@ -10,7 +10,7 @@ class KardmaExchange < ActiveRecord::Base
 
   def cannot_be_multiple_pending_for_user(user=nil)
     user ||= current_user
-    if user.has_pending_exchange?
+    if user.has_pending_exchange? && user.pending_exchange != self
       errors.add(:base, "#{user.role_in_pending_exchange}")
       errors.add(:base, "#{user.pending_exchange.station.name}")
       errors.add(:base, "#{user.pending_exchange.id}")
