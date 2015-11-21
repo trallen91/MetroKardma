@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   resources :kardma_exchanges, only: [:create, :destroy, :update] do
     collection do
         get 'search_by_swiper_swipee/:swiperOrSwipee' => 'kardma_exchanges#search_by_swiper_swipee'
-    end
+
+        put 'update_with_match/:id' => 'kardma_exchanges#update_with_match'
+      end
   end
 end
