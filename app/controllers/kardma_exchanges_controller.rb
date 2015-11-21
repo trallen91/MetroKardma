@@ -29,6 +29,7 @@ class KardmaExchangesController < ApplicationController
     #Complete this exchange
     @ke = KardmaExchange.find_by(id: params[:id])
     @ke.complete = true
+    @ke.current_user = current_user
     if @ke.save
       render json: {message: "Successfully updated"}, status: 200
     else
