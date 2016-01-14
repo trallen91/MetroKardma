@@ -9,12 +9,13 @@ class ChatsController < ApplicationController
 
   def create
     #@chat = Chat.new(chat_params)
-    @isBetween = Chat.between(params[:swiper_id], params[:swipee_id])
-    if @isBetween.present?
-      @chat = @isBetween.first
-    else
-      @chat = Chat.create!(chat_params)
-    end
+    # binding.pry
+    # @isBetween = Chat.between(params[:swiper_id], params[:swipee_id])
+    # if @isBetween.present?
+    #   @chat = @isBetween.first
+    # else
+    @chat = Chat.create!(chat_params)
+    # end
     render json: {chat_id: @chat.id}
   end
 
@@ -30,6 +31,6 @@ class ChatsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def chat_params
-    params.permit(:swiper_id, :swipee_id)
+    params.permit(:swiper_id, :swipee_id, :swiperSwipeeObj)
   end
 end
