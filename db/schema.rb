@@ -25,12 +25,12 @@ ActiveRecord::Schema.define(version: 20151024233518) do
   end
 
   create_table "kardma_exchanges", force: :cascade do |t|
-    t.integer  "giver_id"
-    t.integer  "receiver_id"
+    t.integer  "swiper_id"
+    t.integer  "swipee_id"
     t.integer  "station_id"
-    t.boolean  "complete",    default: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.boolean  "complete", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "messages", force: :cascade do |t|
