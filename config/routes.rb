@@ -14,5 +14,9 @@ Rails.application.routes.draw do
 
   resources :stations, only: [:index, :show]
   resources :users, only: [:show,:index]
-  resources :kardma_exchanges, only: [:create, :destroy, :update]
+  resources :kardma_exchanges, only: [:create, :destroy, :update] do
+      collection do
+        put 'update_with_match/:id' => 'kardma_exchanges#update_with_match'
+      end
+    end
 end
