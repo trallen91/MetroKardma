@@ -38,13 +38,20 @@ class KardmaExchangesController < ApplicationController
 
   def update_with_match
     @ke = KardmaExchange.find_by(id: params[:id])
-     role = params[:role]
-     @ke.send(role+'=', current_user)
+     # role = params[:role]
+     # @ke.send(role+'=', current_user)
+
+     if @ke.swiper == nil
+        @ke.swiper = current_user
+     elsif @ke.swipee == nil
+        @ke.swipee = current_user
+     end
      @ke.current_user = current_user
 
      if @ke.save
-       render json: {message: "Successfully created"}, status: 200
+       render json: {exchange_id: @ke.id}
      else
+      #This error handling process sucks
        render json: {:errors => @ke.errors.full_messages }
      end
    end
