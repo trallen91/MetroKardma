@@ -3,20 +3,24 @@ class ChatsController < ApplicationController
 
   def show
     @chat = Chat.find(params[:id])
-    @receiver = interlocutor(@chat)
-    render :json => @chat
+    # @receiver = interlocutor(@chat)
+    render :json => @chat.to_json(:include => {:kardma_exchange => {}})
   end
 
   def create
     #@chat = Chat.new(chat_params)
-    # binding.pry
     # @isBetween = Chat.between(params[:swiper_id], params[:swipee_id])
     # if @isBetween.present?
     #   @chat = @isBetween.first
     # else
-    @chat = Chat.create!(chat_params)
     # end
-    render json: {chat_id: @chat.id}
+    ke = KardmaExchange.find_by(id: params[:exchange_id])
+    @chat = Chat.new({kardma_exchange: ke})
+    if @chat.save
+      render json: {chat_id: @chat.id}
+    else
+      render json: {message: "Something went wrong"}, status: 500
+    end
   end
 
   private
@@ -31,6 +35,6 @@ class ChatsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def chat_params
-    params.permit(:swiper_id, :swipee_id, :swiperSwipeeObj)
+    params.permit(:exchange_id)
   end
 end
