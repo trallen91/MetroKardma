@@ -24,7 +24,7 @@ KardmaExchange.create(swipee: henry, station: coney, complete: false)
 
 KardmaExchange.create(swiper: jabroni, station: thirty_third_street, complete: false)
 
-Chat.create(swiper_id: todd.id, swipee_id: bill.id, fireBaseId: 10)
-#you shud be able to have both types of relationships. I dont think we need to merge chats of this kind
-Chat.create(swiper_id: bill.id, swipee_id: todd.id, fireBaseId: 10)
-Chat.create(swiper_id: henry.id, swipee_id: jabroni.id, fireBaseId: 11)
+# Chat.create(swiper_id: todd.id, swipee_id: bill.id, fireBaseId: 10)
+# #you shud be able to have both types of relationships. I dont think we need to merge chats of this kind
+# Chat.create(swiper_id: bill.id, swipee_id: todd.id, fireBaseId: 10)
+# Chat.create(swiper_id: henry.id, swipee_id: jabroni.id, fireBaseId: 11)
