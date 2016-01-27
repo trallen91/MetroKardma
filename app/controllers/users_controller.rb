@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
-    render :json => @user.to_json(:only => [:first_name, :last_name, :email])
+    render :json => @user.to_json(:methods => :average_rating)
   end
 
   def index

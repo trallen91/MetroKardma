@@ -1,11 +1,15 @@
 class KardmaExchangesController < ApplicationController
 
+  def index
+    kes = KardmaExchange.all
+    render :json => kes.to_json
+  end
+
   def create
     station = Station.find_by(id: params[:station_id])
     @ke = KardmaExchange.new(station:station)
     role = params[:role]
     @ke.send(role+'=', current_user)
-    @ke.current_user = current_user
 
     if @ke.save
       render json: {message: "Successfully created"}, status: 200
@@ -27,7 +31,6 @@ class KardmaExchangesController < ApplicationController
   def update
      @ke = KardmaExchange.find_by(id: params[:id])
      @ke.complete = true
-     @ke.current_user = current_user
 
      if @ke.save
        render json: {message: "Successfully created"}, status: 200
@@ -46,7 +49,6 @@ class KardmaExchangesController < ApplicationController
      elsif @ke.swipee == nil
         @ke.swipee = current_user
      end
-     @ke.current_user = current_user
 
      if @ke.save
        render json: {exchange_id: @ke.id}
@@ -54,6 +56,13 @@ class KardmaExchangesController < ApplicationController
       #This error handling process sucks
        render json: {:errors => @ke.errors.full_messages }
      end
+   end
+
+   def show_pending_exchange_for_user
+      user = User.find_by(id: params[:user_id])
+      ke = user.pending_exchange
+
+      render :json => ke.to_json
    end
 
 end

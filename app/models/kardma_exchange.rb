@@ -3,9 +3,9 @@ class KardmaExchange < ActiveRecord::Base
   belongs_to :swiper, class_name: :User
   belongs_to :swipee, class_name: :User
 
-  attr_accessor :current_user
+  # attr_accessor :current_user
 
-  # Below is the code for preventing a user from having multiple exchanges.  Implement later.
+  # Below is the code for preventing a user from having multiple exchanges.  Implement later or move to front end.
 
   # validate :cannot_be_multiple_pending_for_user
 
