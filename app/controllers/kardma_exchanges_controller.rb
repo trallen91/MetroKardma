@@ -12,9 +12,10 @@ class KardmaExchangesController < ApplicationController
     @ke.send(role+'=', current_user)
 
     if @ke.save
-      render json: {message: "Successfully created"}, status: 200
+      render json: {exchange_id: @ke.id}
     else
-      render json: {:errors => @ke.errors.full_messages }
+      # render json: {:errors => @ke.errors.full_messages }
+      render json: {message: "Something went wrong"}, status: 500
     end
   end
 
@@ -38,6 +39,12 @@ class KardmaExchangesController < ApplicationController
        render json: {:errors => @ke.errors.full_messages }
      end
    end
+
+  def show
+    @ke = KardmaExchange.find_by(id: params[:id])
+
+    render :json => @ke.to_json(:methods => :chat)
+  end
 
   def update_with_match
     @ke = KardmaExchange.find_by(id: params[:id])
