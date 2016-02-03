@@ -3,6 +3,8 @@ class KardmaExchange < ActiveRecord::Base
   belongs_to :swiper, class_name: :User
   belongs_to :swipee, class_name: :User
 
+  has_one :chat
+
   # attr_accessor :current_user
 
   # Below is the code for preventing a user from having multiple exchanges.  Implement later or move to front end.
