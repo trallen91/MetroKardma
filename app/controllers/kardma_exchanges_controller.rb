@@ -29,12 +29,11 @@ class KardmaExchangesController < ApplicationController
     end
   end
 
-  def update
+  def update_with_complete
      @ke = KardmaExchange.find_by(id: params[:id])
      @ke.complete = true
-
      if @ke.save
-       render json: {message: "Successfully created"}, status: 200
+       render :json => @ke.to_json
      else
        render json: {:errors => @ke.errors.full_messages }
      end
