@@ -3,26 +3,24 @@ class ChatsController < ApplicationController
 
   def show
     @chat = Chat.find(params[:id])
-    @receiver = interlocutor(@chat)
-    render :json => @chat
+    # @receiver = interlocutor(@chat)
+    render :json => @chat.to_json(:include => {:kardma_exchange => {}})
   end
 
   def create
-    #find the chat or create it if it doesn't exist
-    @is_between = Chat.where(swiper_id: params[:swiper_id], swipee_id: params[:swipee_id])
-
-    if @is_between.length > 1
-      @error_text = "More than one Chat exits between two users as the same role"
-      render json: {message: @error_text}, status: 500
-      raise @error_text
-    end
-
-    if @is_between.present?
-      @chat = @is_between.first
+    #@chat = Chat.new(chat_params)
+    # @isBetween = Chat.between(params[:swiper_id], params[:swipee_id])
+    # if @isBetween.present?
+    #   @chat = @isBetween.first
+    # else
+    # end
+    ke = KardmaExchange.find_by(id: params[:exchange_id])
+    @chat = Chat.new({kardma_exchange: ke})
+    if @chat.save
+      render json: {chat_id: @chat.id}
     else
-      @chat = Chat.create!(chat_params)
+      render json: {message: "Something went wrong"}, status: 500
     end
-    render json: {chat_id: @chat.id}
   end
 
   private
@@ -37,6 +35,6 @@ class ChatsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def chat_params
-    params.permit(:swiper_id, :swipee_id)
+    params.permit(:exchange_id)
   end
 end

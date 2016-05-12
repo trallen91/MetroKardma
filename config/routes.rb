@@ -14,11 +14,11 @@ Rails.application.routes.draw do
 
   resources :stations, only: [:index, :show]
   resources :users, only: [:show,:index]
-  resources :kardma_exchanges, only: [:create, :destroy, :update] do
-    collection do
-        get 'search_by_swiper_swipee/:swiperOrSwipee' => 'kardma_exchanges#search_by_swiper_swipee'
-
+  resources :kardma_exchanges, only: [:index, :create, :destroy, :show] do
+      collection do
         put 'update_with_match/:id' => 'kardma_exchanges#update_with_match'
+        put 'update_with_complete/:id' => 'kardma_exchanges#update_with_complete'
+        get 'pending_exchange/:user_id' => 'kardma_exchanges#show_pending_exchange_for_user'
       end
-  end
+    end
 end

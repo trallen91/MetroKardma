@@ -17,11 +17,10 @@ ActiveRecord::Schema.define(version: 20151024233518) do
   enable_extension "plpgsql"
 
   create_table "chats", force: :cascade do |t|
-    t.integer  "swiper_id",  null: false
-    t.integer  "swipee_id",  null: false
+    t.integer  "kardma_exchange_id", null: false
     t.string   "fireBaseId"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   create_table "kardma_exchanges", force: :cascade do |t|
