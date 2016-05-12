@@ -6,10 +6,10 @@ class MessagesController < ApplicationController
     @message = @chat.messages.build(message_params)
     @message.user_id = current_user.id
     @message.save!
-    @message.body = 'youre dumb'
-    @path = chats_path(@chat)
-    PrivatePub.publish_to "/messages/new", :chat_message => "test"
-    PrivatePub.subscription
+    # @message.body = 'youre dumb'
+    # @path = chats_path(@chat)
+    # PrivatePub.publish_to "/messages/new", :chat_message => "test"
+    # PrivatePub.subscription
     render :json => @chat
   end
 
