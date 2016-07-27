@@ -10,6 +10,7 @@ Rails.application.routes.draw do
                    }
   resources :chats, only: [:show, :create] do
     resources :messages
+    get 'open_chat/:user_id' => 'chats#get_chat_for_user'
   end
 
   resources :stations, only: [:index, :show]

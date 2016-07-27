@@ -23,6 +23,12 @@ class ChatsController < ApplicationController
     end
   end
 
+  def get_chat_for_user
+    # @chat = Chat.joins(:kardma_exchange).where("complete = ? AND (swiper_id = ? OR swipee_id = ?", false, params[:user_id], params[:user_id]).first
+
+    render :json => @chat.to_json(:include => {:kardma_exchange => {}})
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_chat
