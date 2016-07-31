@@ -15,13 +15,13 @@ class User < ActiveRecord::Base
     !!self.pending_exchange
   end
 
-  # def pending_exchange
-  #   if self.given_swipes.where(complete:false).length > 0
-  #     return self.given_swipes.where(complete:false).first
-  #   elsif self.received_swipes.where(complete:false).length > 0
-  #     return self.received_swipes.where(complete:false).first
-  #   end
-  # end
+  def pending_exchange
+    if self.given_swipes.where(complete:false).length > 0
+      return self.given_swipes.where(complete:false).first
+    elsif self.received_swipes.where(complete:false).length > 0
+      return self.received_swipes.where(complete:false).first
+    end
+  end
 
   # def role_in_pending_exchange
   #   if self.pending_exchange.swiper == self

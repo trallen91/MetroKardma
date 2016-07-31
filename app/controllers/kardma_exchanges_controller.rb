@@ -67,8 +67,7 @@ class KardmaExchangesController < ApplicationController
    def show_pending_exchange_for_user
       user = User.find_by(id: params[:user_id])
       ke = user.pending_exchange
-
-      render :json => ke.to_json
+      render :json => ke.to_json(:methods => :chat)
    end
 
 end

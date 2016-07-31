@@ -24,7 +24,14 @@ class ChatsController < ApplicationController
   end
 
   def get_chat_for_user
-    # @chat = Chat.joins(:kardma_exchange).where("complete = ? AND (swiper_id = ? OR swipee_id = ?", false, params[:user_id], params[:user_id]).first
+    #find if user has an open chat
+    @ke = KardmaExchange.where('complete = ? AND (swiper_id = ? OR swipee_id = ?)', false, params[:user_id], params[:user_id]).first
+
+    if (@ke != nil)
+      @chat = @ke.chat
+    else
+      @chat = Chat.new()
+    end
 
     render :json => @chat.to_json(:include => {:kardma_exchange => {}})
   end
